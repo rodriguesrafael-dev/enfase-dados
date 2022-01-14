@@ -1,3 +1,10 @@
-mat-toolbar {
-    height: 81px;
+.navbar {
+    padding: 10px;
+    background-color: rgb(64, 67, 255);
+}
+
+.navbar-brand {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    letter-spacing: 1.5px;
 }

@@ -1,14 +1,25 @@
-<h2 class="text-center">Entrar</h2>
-
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-    <div class="form-group">
-        <label>Email</label>
-        <input class="form-control" type="email" name="email" id="email" [(ngModel)]="login.email" required />
+<main>
+    <div class="form-login">
+        <h2 class="text-center">Bem-vindo</h2>
+        <form (ngSubmit)="onSubmit()" #form="">
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label">email</label>
+                <input type="email" class="form-control" id="email" placeholder="digite seu email" name="email" [(ngModel)]="login.email" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label">senha</label>
+                <input type="password" class="form-control" id="password" placeholder="digite sua senha" name="password" [(ngModel)]="login.password" required />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-light" [disabled]="form.form.invalid">entrar
+            </button>
+            </div>
+            <div class="form-group">
+                <p routerLink="/create-account">Criar sua conta?</p>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label>Senha</label>
-        <input class="form-control" type="password" name="password" id="password" [(ngModel)]="login.password" required />
-    </div>
-    <button type="submit" mat-raised-button color="primary" [disabled]="form.form.invalid">Entrar</button>
-    <button type="button" mat-raised-button color="primary" [routerLink]="['/create-account']">Criar conta</button>
-</form>
+</main>
+<footer>
+    <p>ESIG Group © 2011 - 2022. Todos os direitos reservados.</p>
+</footer>

@@ -1,0 +1,51 @@
+.form-group {
+    padding: 12px;
+    color: aliceblue;
+}
+
+.form-group p {
+    text-align: right;
+}
+
+.form-group p:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(255, 95, 228);
+}
+
+.form-group button {
+    width: 100%;
+    letter-spacing: 1.5px;
+}
+
+.form-label {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1.5px;
+}
+
+.form-login {
+    padding: 33px;
+    background: rgb(121, 9, 81);
+    background: linear-gradient(18deg, rgba(121, 9, 81, 1) 59%, rgba(255, 0, 159, 0.6923144257703081) 100%, rgba(2, 0, 36, 0.7763480392156863) 100%);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.text-center {
+    color: azure;
+    font-family: Poppins, "Helvetica Neue", sans-serif;
+    font-size: 2em;
+    letter-spacing: 1.5px;
+}
+
+footer p {
+    position: absolute;
+    color: rgb(4, 76, 139);
+    font-weight: bold;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
