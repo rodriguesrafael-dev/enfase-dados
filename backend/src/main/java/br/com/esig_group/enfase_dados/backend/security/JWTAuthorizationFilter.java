@@ -18,37 +18,47 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     private final JWTAttributes jwtAttributes;
 
-    public JWTAuthorizationFilter(AuthenticationManager authManager, JWTAttributes jwtAttributes) {
+    public JWTAuthorizationFilter(
+        AuthenticationManager authManager, 
+        JWTAttributes jwtAttributes) {
+        
         super(authManager);
         this.jwtAttributes = jwtAttributes;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
-            throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest req, 
+                                    HttpServletResponse res, 
+                                    FilterChain chain) 
+                                    throws IOException, ServletException {
+        
         String header = req.getHeader(jwtAttributes.getHeaderString());
 
-        if (header == null || !header.startsWith(jwtAttributes.getTokenPrefix())) {
+        if (header == null || 
+            !header.startsWith(jwtAttributes.getTokenPrefix())) {
             chain.doFilter(req, res);
             return;
         }
 
-        UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
+        UsernamePasswordAuthenticationToken 
+        authentication = getAuthentication(req);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(req, res);
     }
 
-    // Reads the JWT from the Authorization header, and then uses JWT to validate the token
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+        
         String token = request.getHeader(jwtAttributes.getHeaderString());
 
         if (token == null) {
             return null;
         }
 
-        // Parse the token.
-        String username = JWT.require(Algorithm.HMAC512(jwtAttributes.getSecret().getBytes()))
+        String username = JWT.require(Algorithm.HMAC512(
+            jwtAttributes
+            .getSecret()
+            .getBytes()))
                 .build()
                 .verify(token.replace(jwtAttributes.getTokenPrefix(), ""))
                 .getSubject();
@@ -57,7 +67,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             return null;
         }
 
-        // new arraylist means authorities
-        return new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken(
+            username, null, new ArrayList<>());
     }
+    
 }

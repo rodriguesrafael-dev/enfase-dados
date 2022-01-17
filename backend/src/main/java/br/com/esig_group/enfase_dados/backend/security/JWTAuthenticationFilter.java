@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,7 +24,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private final AuthenticationManager authenticationManager;
     private final JWTAttributes jwtAttributes;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTAttributes jwtAttributes) {
+    public JWTAuthenticationFilter(
+        AuthenticationManager authenticationManager,         
+        JWTAttributes jwtAttributes) {
+        
         this.authenticationManager = authenticationManager;
         this.jwtAttributes = jwtAttributes;
     }
@@ -32,12 +36,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            UserModel user = new ObjectMapper()
-                    .readValue(req.getInputStream(), UserModel.class);
+            UserModel user = new ObjectMapper().readValue(req.getInputStream(), UserModel.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            user.getLogin(),
+                            user.getEmail(),
                             user.getPassword(),
                             new ArrayList<>())
             );
@@ -50,7 +53,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
-                                            Authentication auth) throws IOException {
+                                            Authentication auth) throws IOException, ServletException {
 
         UserDetailsData user = (UserDetailsData) auth.getPrincipal();
 

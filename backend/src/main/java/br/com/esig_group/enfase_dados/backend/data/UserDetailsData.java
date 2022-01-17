@@ -5,11 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.esig_group.enfase_dados.backend.model.UserModel;
 
-/*
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-*/
 import java.util.*;
 
 public class UserDetailsData implements UserDetails {
@@ -36,7 +31,7 @@ public class UserDetailsData implements UserDetails {
 
    @Override
    public String getUsername() {
-       return user.orElse(new UserModel()).getLogin();
+       return user.orElse(new UserModel()).getEmail();
    }
 
    @Override

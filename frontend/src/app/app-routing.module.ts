@@ -1,3 +1,4 @@
+import { ChartsFormAdminComponent } from './layout/charts-form-admin/charts-form-admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -6,28 +7,33 @@ import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { AuthenticationComponent } from './layout/authentication/authentication.component';
 import { HomeComponent } from './layout/home/home.component';
-import { TaskFormComponent } from './tasks/task-form/task-form.component';
-import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { ChartsFormComponent } from './layout/charts-form/charts-form.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', component: TaskListComponent },
-      { path: 'new', component: TaskFormComponent },
-      { path: 'edit/:id', component: TaskFormComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'chart', component: ChartsFormComponent },
     ],
-    canActivate: [AuthGuard],
   },
   {
     path: '',
     component: AuthenticationComponent,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'create-account', component: CreateAccountComponent },
     ],
+  },
+  {
+    path: '',
+    component: ChartsFormAdminComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'chart-admin', component: ChartsFormAdminComponent },
+    ],
+    canActivate: [AuthGuard],
   },
 ];
 

@@ -3,7 +3,7 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Router,
+  Router
 } from '@angular/router';
 
 @Injectable({

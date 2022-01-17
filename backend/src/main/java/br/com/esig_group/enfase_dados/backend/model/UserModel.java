@@ -9,29 +9,21 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
 @Entity(name="sig_users")
 public class UserModel implements Serializable {
+
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @NonNull
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id")
    private Long id;
 
-   @NonNull
-   @Column(name = "login", unique = true)
-   private String login;
-
-   @NonNull
-   @Column(name = "password")
-   private String password;
-
-   @NonNull
-   @Column(name = "user_name")
+   @Column(name = "name", length = 100)
    private String name;
 
-   @NonNull
-   @Column(name = "user_email")
+   @Column(name = "email", length = 100, unique = true)
    private String email;
+
+   @Column(name = "password")
+   private String password;
    
 }

@@ -1,19 +1,32 @@
-<h2 class="text-center">Criar minha conta</h2>
-
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-    <div class="form-group">
-        <label>Nome</label>
-        <input class="form-control" type="text" name="email" id="email" [(ngModel)]="account.name" required />
+<main class="account-page">
+    <div>
+        <h2 class="text-center">Criar minha conta</h2>
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label">nome e sobrenome</label>
+                <input type="name" class="form-control" id="name" placeholder="digite seu nome e sobrenome" name="name" [(ngModel)]="account.name" required />
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label">email</label>
+                <input type="email" class="form-control" id="email" placeholder="digite seu email" name="email" [(ngModel)]="account.email" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label">senha</label>
+                <input type="password" class="form-control" id="password" placeholder="digite sua senha" name="password" [(ngModel)]="account.password" required />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-light" [disabled]="form.form.invalid">
+          criar minha conta
+        </button>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-light" routerLink="/">
+          cancelar
+        </button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input class="form-control" type="email" name="email" id="email" [(ngModel)]="account.email" required />
-    </div>
-    <div class="form-group">
-        <label>Senha</label>
-        <input class="form-control" type="password" name="password" id="password" [(ngModel)]="account.password" required />
-    </div>
-    <button type="submit" mat-raised-button color="primary" [disabled]="form.form.invalid">
-    Criar minha conta
-  </button>
-</form>
+</main>
+<footer>
+    <p>ESIG Group © 2011 - 2022. Todos os direitos reservados.</p>
+</footer>
